@@ -1,33 +1,13 @@
-import sqlite3
+import mysql.connector
+import os
 
-conn = sqlite3.connect("mytennis.db")
-c = conn.cursor()
-
-# Tabella utenti
-c.execute("""
-CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    telegram_id INTEGER UNIQUE,
-    username TEXT,
-    name TEXT
+# Leggi i dati da variabili d'ambiente
+db = mysql.connector.connect(
+    host=os.getenv("DB_HOST"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME")
 )
-""")
 
-# Tabella partite con tutte le colonne necessarie
-c.execute("""
-CREATE TABLE IF NOT EXISTS matches (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    player_id INTEGER,
-    opponent TEXT,
-    winloss TEXT,
-    score TEXT,
-    sets_won INTEGER DEFAULT 0,
-    sets_lost INTEGER DEFAULT 0,
-    games_won INTEGER DEFAULT 0,
-    games_lost INTEGER DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
-""")
+cursor = db.cursor()
 
-conn.commit()
-conn.close()
