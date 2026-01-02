@@ -1,2 +1,11 @@
+# Bot Telegram
 python-telegram-bot==20.3
+
+# MySQL driver
+mysql-connector-python
+
+# Logging opzionale
+loguru
+
+# Se usi altre librerie standard come datetime, os, ecc., non serve metterle qui
 
