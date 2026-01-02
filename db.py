@@ -1,13 +1,12 @@
 import mysql.connector
-import os
 
-# Leggi i dati da variabili d'ambiente
-db = mysql.connector.connect(
-    host=os.getenv("DB_HOST"),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD"),
-    database=os.getenv("DB_NAME")
+conn = mysql.connector.connect(
+    host="switchyard.proxy.rlwy.net",
+    user="root",
+    password="EtSYgitrneEBIPKZZYSgYiNYCIjeoFVo",
+    database="railway",
+    port=3306  # se specificato da Railway
 )
 
-cursor = db.cursor()
+c = conn.cursor()
 
